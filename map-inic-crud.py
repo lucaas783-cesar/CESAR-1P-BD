@@ -15,6 +15,7 @@ CAMINHO_BANCO = "usuarios.db"
 # Problema original: mensagens de erro/sucesso eram apagadas
 # imediatamente pelo próximo system("cls").
 #
+# Solução: guardamos a mensagem numa variável global antes do cls.
 # A função cabecalho() sempre a exibe (se existir) entre o header
 # e o menu, e depois a limpa para não repetir.
 # ================================================================
@@ -315,15 +316,15 @@ def simulador(nome_usuario: str):
         capacidade_perdida = cap_original - cap_atual
         anos_uso = ano_atual - ano
 
-        if soh > 90:
+        if soh >= 90:
             cor_soh      = Fore.GREEN
             status       = "Excelente 🟢"
             recomendacao = "Bateria em ótimo estado. Continue com as práticas atuais de carregamento."
-        elif soh > 80:
+        elif soh >= 80:
             cor_soh      = Fore.YELLOW
             status       = "Segunda Vida 🟡"
             recomendacao = "Desgaste moderado. Evite cargas acima de 80% e abaixo de 20%.\n Recomendável para esta bateria ser encaminhada para segunda vida."
-        elif soh > 60:
+        elif soh >= 60:
             cor_soh      = Fore.RED
             status       = "Desgastada 🔴"
             recomendacao = "Bateria degradada. Autonomia reduzida. Deve ser encaminhada para reciclagem"
@@ -385,7 +386,7 @@ def menu_logado(nome: str, usuario_id: int):
     opcoes = {
         "1": ("Simulador SOH",       lambda: simulador(nome)),
         "2": ("Atualizar cadastro",  lambda: atualizar_usuario(usuario_id)),
-        "3": ("Deletar minha conta", lambda: deletar_usuario(usuario_id)), # Chama direto a função
+        "3": ("Deletar minha conta", lambda: deletar_usuario(usuario_id)),
         "4": ("Listar usuários",     listar_usuarios),
         "5": ("Sair da conta",       None),
     }
