@@ -15,7 +15,6 @@ CAMINHO_BANCO = "usuarios.db"
 # Problema original: mensagens de erro/sucesso eram apagadas
 # imediatamente pelo próximo system("cls").
 #
-# Solução: guardamos a mensagem numa variável global antes do cls.
 # A função cabecalho() sempre a exibe (se existir) entre o header
 # e o menu, e depois a limpa para não repetir.
 # ================================================================
